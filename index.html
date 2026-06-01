@@ -5,832 +5,489 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>中山市理氏科技有限公司 - LISI Conveyance Systems</title>
     <style>
-        /* ===== Reset & Base ===== */
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-            color: #333;
-            line-height: 1.6;
-        }
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
-        img { max-width: 100%; height: auto; display: block; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .section { padding: 80px 0; }
-        .section-title {
-            font-size: 32px;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 12px;
-            color: #222;
-        }
-        .section-subtitle {
-            font-size: 16px;
-            text-align: center;
-            color: #666;
-            margin-bottom: 50px;
-        }
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;color:#333;line-height:1.6}
+        a{text-decoration:none;color:inherit}
+        ul{list-style:none}
+        img{max-width:100%;height:auto;display:block}
+        .container{max-width:1200px;margin:0 auto;padding:0 20px}
+        .section{padding:80px 0}
+        .section-title{font-size:32px;font-weight:700;text-align:center;margin-bottom:6px;color:#222}
+        .section-en{font-size:13px;text-align:center;color:#999;margin-bottom:4px;letter-spacing:0.5px;text-transform:uppercase}
+        .section-subtitle{font-size:15px;text-align:center;color:#666;margin-bottom:44px}
 
-        /* ===== Colors ===== */
-        :root {
-            --primary: #C8102E;
-            --primary-dark: #A00D24;
-            --primary-light: #E83A4A;
-            --bg-light: #F8F8F8;
-            --bg-dark: #1A1A2E;
-            --text-dark: #222;
-            --text-gray: #666;
-            --text-light: #999;
-            --white: #FFF;
-        }
+        :root{--primary:#C8102E;--primary-dark:#A00D24;--primary-light:#E83A4A;--bg-light:#F8F8F8;--bg-dark:#1A1A2E;--text-dark:#222;--text-gray:#666;--white:#FFF}
 
-        /* ===== Header / Nav ===== */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(255,255,255,0.97);
-            border-bottom: 1px solid #eee;
-            transition: all 0.3s;
-        }
-        .header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
-        .header-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 72px;
-        }
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .logo img { height: 42px; width: auto; }
-        .logo-text {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--primary);
-        }
-        .logo-text small {
-            font-size: 12px;
-            font-weight: 400;
-            color: #888;
-            display: block;
-        }
+        .header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,0.97);border-bottom:1px solid #eee;transition:all 0.3s}
+        .header.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.08)}
+        .header-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+        .logo{display:flex;align-items:center;gap:12px}
+        .logo img{height:40px;width:auto}
+        .logo-text{font-size:18px;font-weight:700;color:var(--primary)}
+        .logo-text small{font-size:11px;font-weight:400;color:#999;display:block;line-height:1.3}
+        .nav{display:flex;align-items:center;gap:4px}
+        .nav a{padding:8px 14px;font-size:13px;font-weight:500;color:#444;border-radius:6px;transition:all 0.2s}
+        .nav a:hover{color:var(--primary);background:rgba(200,16,46,0.06)}
+        .nav .btn-contact{background:var(--primary);color:#fff;padding:8px 20px;border-radius:6px;font-weight:600}
+        .nav .btn-contact:hover{background:var(--primary-dark);color:#fff}
+        .menu-toggle{display:none;background:none;border:none;font-size:28px;cursor:pointer;color:#333;padding:4px}
 
-        .nav { display: flex; align-items: center; gap: 6px; }
-        .nav a {
-            padding: 8px 16px;
-            font-size: 14px;
-            font-weight: 500;
-            color: #444;
-            border-radius: 6px;
-            transition: all 0.2s;
-        }
-        .nav a:hover { color: var(--primary); background: rgba(200,16,46,0.06); }
-        .nav .btn-contact {
-            background: var(--primary);
-            color: #fff;
-            padding: 8px 22px;
-            border-radius: 6px;
-            font-weight: 600;
-        }
-        .nav .btn-contact:hover { background: var(--primary-dark); color: #fff; }
+        .hero{margin-top:72px;height:85vh;min-height:520px;display:flex;align-items:center;position:relative;overflow:hidden;background:#111}
+        .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0.65}
+        .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.35) 55%,transparent 100%);z-index:1}
+        .hero-content{position:relative;z-index:2;max-width:680px}
+        .hero-content .hero-en{font-size:13px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px}
+        .hero-content h1{font-size:44px;font-weight:800;color:#fff;line-height:1.2;margin-bottom:16px}
+        .hero-content h1 span{color:var(--primary-light)}
+        .hero-content p{font-size:16px;color:rgba(255,255,255,0.75);margin-bottom:32px;max-width:500px;line-height:1.7}
+        .hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+        .hero-btns a{display:inline-flex;align-items:center;gap:8px;padding:13px 30px;border-radius:6px;font-size:14px;font-weight:600;transition:all 0.3s}
+        .hero-btns .btn-primary{background:var(--primary);color:#fff}
+        .hero-btns .btn-primary:hover{background:var(--primary-dark);transform:translateY(-2px)}
+        .hero-btns .btn-outline{background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.3)}
+        .hero-btns .btn-outline:hover{border-color:var(--primary-light);background:rgba(200,16,46,0.15)}
 
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 28px;
-            cursor: pointer;
-            color: #333;
-            padding: 4px;
-        }
+        .trust-bar{background:var(--white);padding:36px 0;border-bottom:1px solid #eee}
+        .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+        .trust-item h3{font-size:28px;font-weight:800;color:var(--primary)}
+        .trust-item p{font-size:13px;color:var(--text-gray);margin-top:2px}
 
-        /* ===== Hero ===== */
-        .hero {
-            margin-top: 72px;
-            height: 85vh;
-            min-height: 520px;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            background: #111;
-        }
-        .hero-bg {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            opacity: 0.7;
-        }
-        .hero::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(90deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.35) 60%, transparent 100%);
-            z-index: 1;
-        }
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 680px;
-        }
-        .hero-content h1 {
-            font-size: 48px;
-            font-weight: 800;
-            color: #fff;
-            line-height: 1.2;
-            margin-bottom: 20px;
-        }
-        .hero-content h1 span { color: var(--primary-light); }
-        .hero-content p {
-            font-size: 18px;
-            color: rgba(255,255,255,0.8);
-            margin-bottom: 36px;
-            max-width: 520px;
-            line-height: 1.7;
-        }
-        .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
-        .hero-btns a {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 14px 32px;
-            border-radius: 8px;
-            font-size: 15px;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-        .hero-btns .btn-primary {
-            background: var(--primary);
-            color: #fff;
-        }
-        .hero-btns .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); }
-        .hero-btns .btn-outline {
-            background: transparent;
-            color: #fff;
-            border: 2px solid rgba(255,255,255,0.35);
-        }
-        .hero-btns .btn-outline:hover { border-color: var(--primary-light); background: rgba(200,16,46,0.2); }
+        .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+        .about-text h2{font-size:28px;font-weight:700;margin-bottom:18px;color:var(--text-dark)}
+        .about-text h2 small{font-size:13px;font-weight:400;color:#999;display:block;margin-top:2px}
+        .about-text p{color:var(--text-gray);margin-bottom:14px;font-size:14px;line-height:1.8}
+        .about-text .highlight{color:var(--primary);font-weight:600}
+        .about-image{background:var(--bg-light);border-radius:12px;overflow:hidden;height:400px;display:flex;align-items:center;justify-content:center}
+        .about-image img{width:100%;height:100%;object-fit:cover}
 
-        /* ===== Trust Bar ===== */
-        .trust-bar {
-            background: var(--white);
-            padding: 40px 0;
-            border-bottom: 1px solid #eee;
-        }
-        .trust-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            text-align: center;
-        }
-        .trust-item h3 {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--primary);
-        }
-        .trust-item p {
-            font-size: 13px;
-            color: var(--text-gray);
-            margin-top: 4px;
-        }
+        .products{background:var(--bg-light)}
+        .product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+        .product-card{background:var(--white);border-radius:12px;overflow:hidden;transition:all 0.3s;box-shadow:0 2px 12px rgba(0,0,0,0.04)}
+        .product-card:hover{transform:translateY(-5px);box-shadow:0 12px 40px rgba(0,0,0,0.1)}
+        .product-card .img-wrap{height:210px;background:var(--bg-light);display:flex;align-items:center;justify-content:center;overflow:hidden}
+        .product-card .img-wrap img{width:100%;height:100%;object-fit:cover}
+        .product-card .info{padding:22px}
+        .product-card .info .prod-en{font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px}
+        .product-card .info h3{font-size:17px;font-weight:700;margin-bottom:6px;color:var(--text-dark)}
+        .product-card .info p{font-size:13px;color:var(--text-gray);line-height:1.7}
 
-        /* ===== About ===== */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-        .about-text h2 {
-            font-size: 30px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: var(--text-dark);
-        }
-        .about-text p {
-            color: var(--text-gray);
-            margin-bottom: 16px;
-            font-size: 15px;
-            line-height: 1.8;
-        }
-        .about-text .highlight {
-            color: var(--primary);
-            font-weight: 600;
-        }
-        .about-image {
-            background: var(--bg-light);
-            border-radius: 16px;
-            overflow: hidden;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .about-image img { width: 100%; height: 100%; object-fit: cover; }
+        .tech-support{background:var(--white)}
+        .tech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+        .tech-card{text-align:center;padding:40px 24px;border-radius:12px;background:var(--bg-light);transition:all 0.3s}
+        .tech-card:hover{background:var(--primary);color:#fff;transform:translateY(-4px)}
+        .tech-card:hover p,.tech-card:hover .tech-en{color:rgba(255,255,255,0.7)}
+        .tech-card .icon{display:block;margin:0 auto 16px;width:48px;height:48px}
+        .tech-card .tech-en{font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px}
+        .tech-card h4{font-size:16px;font-weight:700;margin-bottom:8px}
+        .tech-card p{font-size:13px;color:var(--text-gray);line-height:1.7}
 
-        /* ===== Products ===== */
-        .products { background: var(--bg-light); }
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-        .product-card {
-            background: var(--white);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.3s;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-        }
-        .product-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
-        }
-        .product-card .img-wrap {
-            height: 220px;
-            background: var(--bg-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-        .product-card .img-wrap img { width: 100%; height: 100%; object-fit: cover; }
-        .product-card .info {
-            padding: 24px;
-        }
-        .product-card .info h3 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--text-dark);
-        }
-        .product-card .info p {
-            font-size: 14px;
-            color: var(--text-gray);
-            line-height: 1.7;
-        }
-        .product-card .info .tag {
-            display: inline-block;
-            margin-top: 12px;
-            padding: 4px 12px;
-            background: rgba(200,16,46,0.08);
-            color: var(--primary);
-            font-size: 12px;
-            border-radius: 4px;
-            font-weight: 600;
-        }
+        .industry-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+        .industry-item{padding:28px 16px;text-align:center;background:var(--bg-light);border-radius:10px;transition:all 0.3s;cursor:default}
+        .industry-item:hover{background:var(--primary);color:#fff;transform:translateY(-4px)}
+        .industry-item .icon{display:block;margin:0 auto 12px;width:36px;height:36px}
+        .industry-item .ind-en{font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px}
+        .industry-item h4{font-size:14px;font-weight:600}
+        .industry-item:hover .ind-en{color:rgba(255,255,255,0.6)}
 
-        /* ===== Solutions / Industries ===== */
-        .solutions { background: var(--white); }
-        .industry-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-        .industry-item {
-            padding: 30px 20px;
-            text-align: center;
-            background: var(--bg-light);
-            border-radius: 12px;
-            transition: all 0.3s;
-            cursor: default;
-        }
-        .industry-item:hover {
-            background: var(--primary);
-            color: #fff;
-            transform: translateY(-4px);
-        }
-        .industry-item .icon {
-            font-size: 40px;
-            margin-bottom: 16px;
-            display: block;
-        }
-        .industry-item h4 {
-            font-size: 15px;
-            font-weight: 600;
-        }
+        .cases{background:var(--bg-light)}
+        .case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+        .case-card{background:var(--white);border-radius:12px;overflow:hidden;transition:all 0.3s;box-shadow:0 2px 12px rgba(0,0,0,0.04)}
+        .case-card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,0.08)}
+        .case-card .img-wrap{height:170px;background:#eee;display:flex;align-items:center;justify-content:center;overflow:hidden}
+        .case-card .img-wrap img{width:100%;height:100%;object-fit:cover}
+        .case-card .info{padding:20px}
+        .case-card .info .case-en{font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px}
+        .case-card .info .company{font-size:11px;color:var(--primary);font-weight:600;margin-bottom:4px}
+        .case-card .info h4{font-size:15px;margin-bottom:6px}
+        .case-card .info p{font-size:13px;color:var(--text-gray);line-height:1.7}
 
-        /* ===== Cases ===== */
-        .cases { background: var(--bg-light); }
-        .case-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-        .case-card {
-            background: var(--white);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.3s;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-        }
-        .case-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
-        .case-card .img-wrap {
-            height: 180px;
-            background: #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #999;
-            font-size: 14px;
-        }
-        .case-card .img-wrap img { width: 100%; height: 100%; object-fit: cover; }
-        .case-card .info { padding: 24px; }
-        .case-card .info .company {
-            font-size: 12px;
-            color: var(--primary);
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-        .case-card .info h4 { font-size: 16px; margin-bottom: 8px; }
-        .case-card .info p { font-size: 14px; color: var(--text-gray); line-height: 1.7; }
+        .advantage-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+        .advantage-item{text-align:center;padding:36px 20px;border-radius:12px;background:var(--white);box-shadow:0 2px 12px rgba(0,0,0,0.04);border:1px solid #f0f0f0}
+        .advantage-item .icon{display:block;margin:0 auto 16px;width:44px;height:44px}
+        .advantage-item .adv-en{font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px}
+        .advantage-item h4{font-size:16px;font-weight:700;margin-bottom:8px}
+        .advantage-item p{font-size:13px;color:var(--text-gray);line-height:1.7}
 
-        /* ===== Advantage ===== */
-        .advantage-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-        .advantage-item {
-            text-align: center;
-            padding: 40px 24px;
-            border-radius: 12px;
-            background: var(--white);
-            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-            border: 1px solid #f0f0f0;
-        }
-        .advantage-item .icon { font-size: 44px; margin-bottom: 20px; display: block; }
-        .advantage-item h4 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
-        .advantage-item p { font-size: 14px; color: var(--text-gray); line-height: 1.7; }
+        .contact-section{background:var(--bg-dark);color:#fff}
+        .contact-section .section-title{color:#fff}
+        .contact-section .section-subtitle{color:rgba(255,255,255,0.5)}
+        .contact-section .section-en{color:rgba(255,255,255,0.3)}
+        .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px}
+        .contact-info h3{font-size:20px;margin-bottom:20px}
+        .contact-info .ci-en{font-size:11px;color:rgba(255,255,255,0.3);text-transform:uppercase;margin-bottom:4px}
+        .contact-info p{margin-bottom:10px;color:rgba(255,255,255,0.7);font-size:14px;display:flex;align-items:center;gap:8px}
+        .contact-info .label{font-weight:600;color:#fff;min-width:70px}
+        .contact-qr{display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:24px}
+        .contact-qr .qr-placeholder{width:140px;height:140px;border:2px dashed rgba(255,255,255,0.3);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:12px;color:rgba(255,255,255,0.3)}
+        .contact-form input,.contact-form textarea{width:100%;padding:12px 16px;margin-bottom:14px;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:rgba(255,255,255,0.06);color:#fff;font-size:13px;outline:none;transition:all 0.2s}
+        .contact-form input::placeholder,.contact-form textarea::placeholder{color:rgba(255,255,255,0.35)}
+        .contact-form input:focus,.contact-form textarea:focus{border-color:var(--primary-light);background:rgba(255,255,255,0.1)}
+        .contact-form textarea{height:110px;resize:vertical}
+        .contact-form button{padding:13px 34px;background:var(--primary);color:#fff;border:none;border-radius:6px;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.3s}
+        .contact-form button:hover{background:var(--primary-dark)}
 
-        /* ===== Contact ===== */
-        .contact-section { background: var(--bg-dark); color: #fff; }
-        .contact-section .section-title { color: #fff; }
-        .contact-section .section-subtitle { color: rgba(255,255,255,0.6); }
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-        }
-        .contact-info h3 {
-            font-size: 20px;
-            margin-bottom: 24px;
-        }
-        .contact-info p {
-            margin-bottom: 12px;
-            color: rgba(255,255,255,0.7);
-            font-size: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .contact-info .label {
-            font-weight: 600;
-            color: #fff;
-            min-width: 70px;
-        }
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 12px 16px;
-            margin-bottom: 16px;
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 8px;
-            background: rgba(255,255,255,0.06);
-            color: #fff;
-            font-size: 14px;
-            outline: none;
-            transition: all 0.2s;
-        }
-        .contact-form input::placeholder,
-        .contact-form textarea::placeholder { color: rgba(255,255,255,0.4); }
-        .contact-form input:focus,
-        .contact-form textarea:focus { border-color: var(--primary-light); background: rgba(255,255,255,0.1); }
-        .contact-form textarea { height: 120px; resize: vertical; }
-        .contact-form button {
-            padding: 14px 36px;
-            background: var(--primary);
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .contact-form button:hover { background: var(--primary-dark); }
+        .footer{background:#111;color:rgba(255,255,255,0.5);padding:40px 0;font-size:13px}
+        .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px}
+        .footer h4{color:#fff;font-size:13px;margin-bottom:14px}
+        .footer a{display:block;margin-bottom:6px;transition:color 0.2s;font-size:12px}
+        .footer a:hover{color:var(--primary-light)}
+        .footer .copyright{margin-top:28px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.06);text-align:center;font-size:12px}
 
-        /* ===== Footer ===== */
-        .footer {
-            background: #111;
-            color: rgba(255,255,255,0.6);
-            padding: 40px 0;
-            font-size: 13px;
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 40px;
-        }
-        .footer h4 {
-            color: #fff;
-            font-size: 14px;
-            margin-bottom: 16px;
-        }
-        .footer a { display: block; margin-bottom: 8px; transition: color 0.2s; }
-        .footer a:hover { color: var(--primary-light); }
-        .footer .copyright {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.08);
-            text-align: center;
-        }
+        ::-webkit-scrollbar{width:6px}
+        ::-webkit-scrollbar-track{background:#f1f1f1}
+        ::-webkit-scrollbar-thumb{background:#ccc;border-radius:3px}
 
-        /* ===== Scroll Bar ===== */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #999; }
-
-        /* ===== Responsive ===== */
-        @media (max-width: 1024px) {
-            .product-grid { grid-template-columns: repeat(2, 1fr); }
-            .industry-grid { grid-template-columns: repeat(2, 1fr); }
-            .case-grid { grid-template-columns: repeat(2, 1fr); }
+        @media(max-width:1024px){
+            .product-grid,.tech-grid,.advantage-grid{grid-template-columns:repeat(2,1fr)}
+            .industry-grid{grid-template-columns:repeat(2,1fr)}
+            .case-grid{grid-template-columns:repeat(2,1fr)}
         }
-        @media (max-width: 768px) {
-            .nav { display: none; }
-            .nav.open {
-                display: flex;
-                flex-direction: column;
-                position: absolute;
-                top: 72px;
-                left: 0;
-                right: 0;
-                background: #fff;
-                padding: 16px;
-                box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            }
-            .menu-toggle { display: block; }
-
-            .hero { height: auto; min-height: auto; padding: 80px 0 60px; }
-            .hero-content h1 { font-size: 32px; }
-            .hero-content p { font-size: 16px; }
-
-            .trust-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-            .about-grid { grid-template-columns: 1fr; gap: 30px; }
-            .product-grid { grid-template-columns: 1fr; }
-            .industry-grid { grid-template-columns: repeat(2, 1fr); }
-            .case-grid { grid-template-columns: 1fr; }
-            .advantage-grid { grid-template-columns: 1fr; }
-            .contact-grid { grid-template-columns: 1fr; }
-            .footer-grid { grid-template-columns: 1fr 1fr; }
-            .section { padding: 50px 0; }
-            .section-title { font-size: 26px; }
+        @media(max-width:768px){
+            .nav{display:none}
+            .nav.open{display:flex;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:#fff;padding:16px;box-shadow:0 4px 20px rgba(0,0,0,0.1)}
+            .menu-toggle{display:block}
+            .hero{height:auto;min-height:auto;padding:80px 0 60px}
+            .hero-content h1{font-size:30px}
+            .hero-content p{font-size:14px}
+            .trust-grid{grid-template-columns:repeat(2,1fr);gap:16px}
+            .about-grid,.contact-grid{grid-template-columns:1fr;gap:30px}
+            .product-grid,.tech-grid,.advantage-grid{grid-template-columns:1fr}
+            .industry-grid{grid-template-columns:repeat(2,1fr)}
+            .case-grid{grid-template-columns:1fr}
+            .footer-grid{grid-template-columns:1fr 1fr}
+            .section{padding:50px 0}
+            .section-title{font-size:24px}
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== Header ===== -->
-    <header class="header" id="header">
-        <div class="container header-inner">
-            <a href="#" class="logo">
-                <img src="images/logo.png" alt="LISI Logo" onerror="this.style.display='none'">
-                <div class="logo-text">
-                    理氏科技
-                    <small>LISI Conveyance Systems</small>
-                </div>
-            </a>
-            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-            <nav class="nav" id="nav">
-                <a href="#about">关于我们</a>
-                <a href="#products">产品中心</a>
-                <a href="#solutions">解决方案</a>
-                <a href="#cases">典型案例</a>
-                <a href="#advantage">核心优势</a>
-                <a href="#contact" class="btn-contact">联系我们</a>
-            </nav>
-        </div>
-    </header>
+<header class="header" id="header">
+    <div class="container header-inner">
+        <a href="#" class="logo">
+            <img src="images/logo.png" alt="LISI" onerror="this.style.display='none'">
+            <div class="logo-text">理氏科技<small>LISI Conveyance Systems</small></div>
+        </a>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <nav class="nav" id="nav">
+            <a href="#about">关于我们 / About</a>
+            <a href="#products">产品 / Products</a>
+            <a href="#tech">技术支持 / Support</a>
+            <a href="#cases">案例 / Cases</a>
+            <a href="#contact" class="btn-contact">联系我们 / Contact</a>
+        </nav>
+    </div>
+</header>
 
-    <!-- ===== Hero ===== -->
-    <section class="hero">
-        <img class="hero-bg" src="images/hero-bg.jpg" alt="LISI 输送设备实景">
-        <div class="container hero-content">
-            <h1>更智慧 · 更快捷 · 更方便<br><span>易拉罐输送系统专家</span></h1>
-            <p>
-                理氏科技专注易拉罐行业输送系统研发、生产与改造 22 年，<br>
-                拥有 CE 认证，产品远销欧洲，服务国内外数十家知名制罐企业。
-            </p>
-            <div class="hero-btns">
-                <a href="#products" class="btn-primary">探索产品 →</a>
-                <a href="#contact" class="btn-outline">咨询报价</a>
+<section class="hero">
+    <img class="hero-bg" src="images/hero-bg.jpg" alt="LISI Equipment">
+    <div class="container hero-content">
+        <div class="hero-en">LISI Conveyance Systems</div>
+        <h1>更智慧 · 更快捷 · 更方便<br><span>易拉罐输送系统专家</span></h1>
+        <p>理氏科技专注易拉罐行业输送系统研发、生产与改造 22 年，拥有 CE 认证，产品远销欧洲，服务国内外数十家知名制罐企业。</p>
+        <div class="hero-btns">
+            <a href="#products" class="btn-primary">探索产品 →</a>
+            <a href="#contact" class="btn-outline">咨询报价</a>
+        </div>
+    </div>
+</section>
+
+<section class="trust-bar">
+    <div class="container trust-grid">
+        <div class="trust-item"><h3>22+</h3><p>年行业经验 / Years of Experience</p></div>
+        <div class="trust-item"><h3>30+</h3><p>专业技术团队 / Technical Team</p></div>
+        <div class="trust-item"><h3>19+</h3><p>ADB 成功案例 / ADB Success Cases</p></div>
+        <div class="trust-item"><h3>CE</h3><p>欧盟出口认证 / EU Certification</p></div>
+    </div>
+</section>
+
+<section class="section" id="about">
+    <div class="container about-grid">
+        <div class="about-text">
+            <h2>关于理氏科技<small>About LISI Conveyance Systems</small></h2>
+            <p><strong>中山市理氏科技有限公司</strong>（简称 LISI）深耕易拉罐行业输送系统领域，由曾工作于波尔亚太（珠海）公司工程部的李营先生于 2003 年创立，核心团队拥有数十年制罐行业输送设备制造、安装与调试经验。</p>
+            <p>公司注册资本 <strong class="highlight">2000 万</strong>，持有 <strong class="highlight">CE 认证</strong>，产品具备出口欧洲资质，已远销比利时、马来西亚等海外市场。</p>
+            <p>总部位于广东省中山市广星科技产业园，配备激光切割、数控冲床、数控折弯、激光焊接等完善的现代化加工设备，形成设计、生产、安装、调试一体化的服务能力。</p>
+            <p>LISI — 专注易拉罐生产线近 <strong>30 年</strong>，经验技术丰富，值得信赖。</p>
+        </div>
+        <div class="about-image">
+            <img src="images/products/转角风台.jpg" alt="工厂实景" onerror="this.parentElement.innerHTML='<div style=\\'text-align:center;color:#999;padding:40px\\'><p>About LISI</p></div>'">
+        </div>
+    </div>
+</section>
+
+<section class="section products" id="products">
+    <div class="container">
+        <div class="section-en">Products</div>
+        <h2 class="section-title">产品中心</h2>
+        <p class="section-subtitle">覆盖易拉罐输送线全场景的标准设备与定制方案</p>
+        <div class="product-grid">
+
+            <div class="product-card">
+                <div class="img-wrap"><img src="images/products/转角风台.jpg" alt="转角风台" onerror="this.innerHTML='<div style=\\'color:#999\\'>🔄</div>'"></div>
+                <div class="info">
+                    <div class="prod-en">Corner Wind Table</div>
+                    <h3>转角风台</h3>
+                    <p>高效的易拉罐输送线转角过渡设备，实现罐体平稳转向、连续输送，减少卡罐与倒罐风险。</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="img-wrap"><img src="images/products/杯型提升机.jpg" alt="杯型提升机" onerror="this.innerHTML='<div style=\\'color:#999\\'>⬆️</div>'"></div>
+                <div class="info">
+                    <div class="prod-en">Cup Elevator</div>
+                    <h3>杯型提升机</h3>
+                    <p>专为易拉罐生产线设计的杯型罐体提升设备，运行平稳、效率高，适配多种罐型规格。</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="img-wrap"><img src="images/products/输送线体系统.jpg" alt="输送线体系统" onerror="this.innerHTML='<div style=\\'color:#999\\'>🔗</div>'"></div>
+                <div class="info">
+                    <div class="prod-en">Conveyor Line System</div>
+                    <h3>输送线体系统</h3>
+                    <p>模块化设计的易拉罐输送线体，支持按需组合与扩展，适配各类制罐生产线的物料流转需求。</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="img-wrap"><img src="images/products/杯笼改造方案.jpg" alt="杯笼改造" onerror="this.innerHTML='<div style=\\'color:#999\\'>🏗️</div>'"></div>
+                <div class="info">
+                    <div class="prod-en">Cup Cage Retrofit</div>
+                    <h3>杯笼改造方案</h3>
+                    <p>各位置杯笼改造项目数百项，优化生产效率，降低故障率，延长设备使用寿命。</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="img-wrap"><img src="images/products/air-doubling-box.jpg" alt="Air Doubling Box" onerror="this.innerHTML='<div style=\\'color:#999\\'>⚙️</div>'"></div>
+                <div class="info">
+                    <div class="prod-en">Air Doubling Box (ADB)</div>
+                    <h3>ADB 自动化设备</h3>
+                    <p>国内 ADB 成功案例已达 19 台，助力客户实现生产线自动化升级，提升整体产能。</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="img-wrap"><img src="images/products/地面输送机.jpg" alt="地面输送机" onerror="this.innerHTML='<div style=\\'color:#999\\'>📦</div>'"></div>
+                <div class="info">
+                    <div class="prod-en">Ground Conveyor</div>
+                    <h3>地面输送机</h3>
+                    <p>用于易拉罐产线地面物料输送环节，结构稳固，运行平稳，适配多种生产线布局需求。</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="section tech-support" id="tech">
+    <div class="container">
+        <div class="section-en">Technical Support</div>
+        <h2 class="section-title">技术支持与服务</h2>
+        <p class="section-subtitle">从设计到安装调试，全程专业技术保障</p>
+        <div class="tech-grid">
+
+            <div class="tech-card">
+                <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="24" cy="24" r="20"/><path d="M16 30c0-4 3.6-7 8-7s8 3 8 7"/><circle cx="20" cy="19" r="3"/><circle cx="28" cy="19" r="3"/></svg>
+                <div class="tech-en">Engineering Design</div>
+                <h4>工程设计</h4>
+                <p>根据客户产线需求提供定制化输送系统设计方案，三维建模精准规划布局。</p>
+            </div>
+
+            <div class="tech-card">
+                <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="14" width="36" height="24" rx="3"/><path d="M14 24h20M14 30h12"/><circle cx="34" cy="24" r="2" fill="currentColor"/><circle cx="34" cy="30" r="2" fill="currentColor"/></svg>
+                <div class="tech-en">Manufacturing</div>
+                <h4>生产制造</h4>
+                <p>配备激光切割、数控加工、激光焊接等先进设备，确保产品精度与品质。</p>
+            </div>
+
+            <div class="tech-card">
+                <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 36V16l24-4v20"/><circle cx="12" cy="36" r="4"/><circle cx="36" cy="32" r="4"/><path d="M18 16l18-4"/></svg>
+                <div class="tech-en">Installation & Commissioning</div>
+                <h4>安装调试</h4>
+                <p>专业工程团队现场安装、调试，确保设备与产线无缝对接，快速投入使用。</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="section solutions" id="solutions">
+    <div class="container">
+        <div class="section-en">Industries</div>
+        <h2 class="section-title">行业解决方案</h2>
+        <p class="section-subtitle">深耕易拉罐全产业链，为各环节提供专业输送方案</p>
+        <div class="industry-grid">
+
+            <div class="industry-item">
+                <svg class="icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="8" y="12" width="20" height="16" rx="2"/><path d="M18 8v4M14 28v3M22 28v3"/></svg>
+                <div class="ind-en">Beverage Cans</div>
+                <h4>饮料制罐</h4>
+            </div>
+
+            <div class="industry-item">
+                <svg class="icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 28V10l16-3v21"/><circle cx="10" cy="28" r="3"/><circle cx="26" cy="28" r="3"/></svg>
+                <div class="ind-en">Beer Cans</div>
+                <h4>啤酒制罐</h4>
+            </div>
+
+            <div class="industry-item">
+                <svg class="icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="16" width="24" height="14" rx="2"/><path d="M10 16V8h16v8M14 8V4M22 8V4"/></svg>
+                <div class="ind-en">Food Packaging</div>
+                <h4>食品包装</h4>
+            </div>
+
+            <div class="industry-item">
+                <svg class="icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="18" cy="18" r="10"/><path d="M18 12v6l4 4"/><path d="M8 8l4 4M28 8l-4 4M8 28l4-4M28 28l-4-4"/></svg>
+                <div class="ind-en">Line Retrofits</div>
+                <h4>产线改造升级</h4>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="section cases" id="cases">
+    <div class="container">
+        <div class="section-en">Case Studies</div>
+        <h2 class="section-title">典型案例</h2>
+        <p class="section-subtitle">服务国内外知名制罐企业，累计完成数百项工程项目</p>
+        <div class="case-grid">
+
+            <div class="case-card">
+                <div class="img-wrap"><img src="images/cases/波尔制罐.jpg" alt="波尔制罐" onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\\'color:#999;font-size:11px\\'>Ball Corporation Project</span>'"></div>
+                <div class="info">
+                    <div class="case-en">Ball Corporation</div>
+                    <div class="company">青岛波尔 / 武汉波尔 / 佛山波尔</div>
+                    <h4>波尔制罐输送系统项目</h4>
+                    <p>为多家波尔制罐工厂提供输送系统设备与产线改造服务，涵盖安装、调试与维护。</p>
+                </div>
+            </div>
+
+            <div class="case-card">
+                <div class="img-wrap"><img src="images/cases/宝钢制罐.jpg" alt="宝钢制罐" onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\\'color:#999;font-size:11px\\'>Baosteel Project</span>'"></div>
+                <div class="info">
+                    <div class="case-en">Baosteel Packaging</div>
+                    <div class="company">武汉宝钢制罐 / 河北宝钢制罐</div>
+                    <h4>宝钢制罐产线输送设备</h4>
+                    <p>为宝钢制罐多个基地提供输送线体设计与制造，提升产线自动化水平与生产效率。</p>
+                </div>
+            </div>
+
+            <div class="case-card">
+                <div class="img-wrap"><img src="images/cases/中粮制罐.jpg" alt="中粮制罐" onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\\'color:#999;font-size:11px\\'>COFCO Project</span>'"></div>
+                <div class="info">
+                    <div class="case-en">COFCO Packaging</div>
+                    <div class="company">广州中粮 / 杭州中粮 / 成都中粮 / 福建中粮</div>
+                    <h4>中粮制罐输送系统方案</h4>
+                    <p>为中粮制罐多个生产基地提供输送系统整体方案，助力客户实现产线效能提升。</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="section" id="advantage">
+    <div class="container">
+        <div class="section-en">Our Advantages</div>
+        <h2 class="section-title">核心优势</h2>
+        <p class="section-subtitle">22 年行业深耕，为客户创造长期价值</p>
+        <div class="advantage-grid">
+
+            <div class="advantage-item">
+                <svg class="icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="22" cy="12" r="6"/><path d="M8 38c0-8 6.3-14 14-14s14 6 14 14"/></svg>
+                <div class="adv-en">Experienced Team</div>
+                <h4>资深技术团队</h4>
+                <p>核心成员来自波尔亚太等知名企业，拥有数十年易拉罐输送设备制造、安装与调试经验。</p>
+            </div>
+
+            <div class="advantage-item">
+                <svg class="icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="16" width="32" height="22" rx="3"/><path d="M14 16V8h16v8"/><circle cx="13" cy="31" r="2" fill="currentColor"/><circle cx="31" cy="31" r="2" fill="currentColor"/></svg>
+                <div class="adv-en">Modern Manufacturing</div>
+                <h4>现代化制造能力</h4>
+                <p>配备激光切割、数控冲床、数控折弯、激光焊接等完备加工设备，交期与品质有保障。</p>
+            </div>
+
+            <div class="advantage-item">
+                <svg class="icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="22" cy="22" r="16"/><path d="M22 12v10l6 4"/><path d="M8 22h4M32 22h4M22 8V4M22 40v-4"/></svg>
+                <div class="adv-en">Global Service</div>
+                <h4>全球化服务能力</h4>
+                <p>CE 认证，产品出口欧洲；服务网络覆盖国内主要制罐产区，响应及时。</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="section contact-section" id="contact">
+    <div class="container">
+        <div class="section-en">Contact Us</div>
+        <h2 class="section-title">联系我们</h2>
+        <p class="section-subtitle">专业团队为您提供免费咨询与方案评估</p>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3>中山市理氏科技有限公司</h3>
+                <p><span class="label">📍 地址</span>广东省中山市广星科技产业园 A 栋</p>
+                <p><span class="label">📞 电话</span>+86-13005788928</p>
+                <p><span class="label">📧 邮箱</span>zhlisijd@aliyun.com</p>
+                <p><span class="label">🌐 网址</span>www.lisi-conveyance.com</p>
+                <div class="contact-qr">
+                    <div class="qr-placeholder">微信 QR Code<br>（待添加）</div>
+                    <p style="font-size:12px;color:rgba(255,255,255,0.4);">扫码添加微信咨询</p>
+                </div>
+            </div>
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('感谢您的留言，我们将尽快与您联系！'); this.reset();">
+                <input type="text" placeholder="您的姓名 / Your Name" required>
+                <input type="text" placeholder="公司名称 / Company">
+                <input type="tel" placeholder="联系电话 / Phone" required>
+                <input type="email" placeholder="电子邮箱 / Email">
+                <textarea placeholder="请描述您的需求 / Describe your requirement..." required></textarea>
+                <button type="submit">提交咨询 / Submit →</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <h4>中山市理氏科技有限公司</h4>
+                <p style="font-size:12px;line-height:1.8;">专注于易拉罐行业输送系统研发、生产、改造及销售，拥有 22 年行业经验，CE 认证，出口欧洲。</p>
+            </div>
+            <div>
+                <h4>产品 / Products</h4>
+                <a href="#products">转角风台 / Corner Wind Table</a>
+                <a href="#products">杯型提升机 / Cup Elevator</a>
+                <a href="#products">地面输送机 / Ground Conveyor</a>
+                <a href="#products">杯笼改造 / Cup Cage Retrofit</a>
+            </div>
+            <div>
+                <h4>链接 / Links</h4>
+                <a href="#about">关于 / About</a>
+                <a href="#tech">技术支持 / Support</a>
+                <a href="#cases">案例 / Cases</a>
+                <a href="#contact">联系 / Contact</a>
+            </div>
+            <div>
+                <h4>联系 / Contact</h4>
+                <a href="#">📍 广东中山广星科技产业园</a>
+                <a href="#">📞 +86-13005788928</a>
+                <a href="#">📧 zhlisijd@aliyun.com</a>
             </div>
         </div>
-    </section>
+        <div class="copyright">&copy; 2026 中山市理氏科技有限公司 LISI Conveyance Systems. All Rights Reserved.</div>
+    </div>
+</footer>
 
-    <!-- ===== Trust Bar ===== -->
-    <section class="trust-bar">
-        <div class="container trust-grid">
-            <div class="trust-item">
-                <h3>22+</h3>
-                <p>年行业经验</p>
-            </div>
-            <div class="trust-item">
-                <h3>30+</h3>
-                <p>专业技术团队</p>
-            </div>
-            <div class="trust-item">
-                <h3>19+</h3>
-                <p>ADB 成功案例</p>
-            </div>
-            <div class="trust-item">
-                <h3>CE</h3>
-                <p>欧盟出口认证</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== About ===== -->
-    <section class="section" id="about">
-        <div class="container about-grid">
-            <div class="about-text">
-                <h2>关于 <span class="highlight">理氏科技</span></h2>
-                <p>
-                    <strong>中山市理氏科技有限公司</strong>（简称 LISI）深耕易拉罐行业输送系统领域，
-                    由曾工作于波尔亚太（珠海）公司工程部的李营先生于 2003 年创立，
-                    核心团队拥有数十年制罐行业输送设备制造、安装与调试经验。
-                </p>
-                <p>
-                    公司注册资本 <strong class="highlight">2000 万</strong>，
-                    持有 <strong class="highlight">CE 认证</strong>，产品具备出口欧洲资质，
-                    已远销比利时、马来西亚等海外市场。
-                </p>
-                <p>
-                    总部位于广东省中山市，配备激光切割、数控冲床、数控折弯、激光焊接等
-                    完善的现代化加工设备，形成设计、生产、安装、调试一体化的服务能力。
-                </p>
-                <p>LISI — 专注易拉罐生产线近 <strong>30 年</strong>，经验技术丰富，值得信赖。</p>
-            </div>
-            <div class="about-image">
-                <img src="images/products/product-1.jpg" alt="工厂实景" onerror="this.parentElement.innerHTML='<div style=\\'text-align:center;color:#999\\'><div style=\\'font-size:48px;margin-bottom:12px\\'>🏭</div><p>工厂展示</p></div>'">
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== Products ===== -->
-    <section class="section products" id="products">
-        <div class="container">
-            <h2 class="section-title">产品中心</h2>
-            <p class="section-subtitle">覆盖易拉罐输送线全场景的标准设备与定制方案</p>
-            <div class="product-grid">
-                <div class="product-card">
-                    <div class="img-wrap">
-                        <img src="images/products/转角风台.jpg" alt="转角风台" onerror="this.parentElement.innerHTML='<div style=\\'color:#999;font-size:40px\\'>🔄</div>'">
-                    </div>
-                    <div class="info">
-                        <h3>转角风台</h3>
-                        <p>高效的易拉罐输送线转角过渡设备，实现罐体平稳转向、连续输送，减少卡罐与倒罐风险。</p>
-                        <span class="tag">输送系统</span>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="img-wrap">
-                        <img src="images/products/杯型提升机.jpg" alt="杯型提升机" onerror="this.parentElement.innerHTML='<div style=\\'color:#999;font-size:40px\\'>⬆️</div>'">
-                    </div>
-                    <div class="info">
-                        <h3>杯型提升机</h3>
-                        <p>专为易拉罐生产线设计的杯型罐体提升设备，运行平稳、效率高，适配多种罐型规格。</p>
-                        <span class="tag">输送系统</span>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="img-wrap">
-                        <img src="images/products/输送线体系统.jpg" alt="输送线体" onerror="this.parentElement.innerHTML='<div style=\\'color:#999;font-size:40px\\'>🔗</div>'">
-                    </div>
-                    <div class="info">
-                        <h3>输送线体系统</h3>
-                        <p>模块化设计的易拉罐输送线体，支持按需组合与扩展，适配各类制罐生产线的物料流转需求。</p>
-                        <span class="tag">输送系统</span>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="img-wrap">
-                        <img src="images/products/杯笼改造方案.jpg" alt="杯笼改造" onerror="this.parentElement.innerHTML='<div style=\\'color:#999;font-size:40px\\'>🏗️</div>'">
-                    </div>
-                    <div class="info">
-                        <h3>杯笼改造方案</h3>
-                        <p>各位置杯笼改造项目数百项，优化生产效率，降低故障率，延长设备使用寿命。</p>
-                        <span class="tag">改造服务</span>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="img-wrap">
-                        <img src="images/products/2-2.jpg" alt="ADB设备" onerror="this.parentElement.innerHTML='<div style=\\'color:#999;font-size:40px\\'>⚙️</div>'">
-                    </div>
-                    <div class="info">
-                        <h3>ADB 自动化设备</h3>
-                        <p>国内 ADB 成功案例已达 19 台，助力客户实现生产线自动化升级，提升整体产能。</p>
-                        <span class="tag">自动化设备</span>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="img-wrap">
-                        <img src="images/products/非标定制设备.jpg" alt="内涂入口" onerror="this.parentElement.innerHTML='<div style=\\'color:#999;font-size:40px'>🔧</div>'">
-                    </div>
-                    <div class="info">
-                        <h3>内涂入口设备</h3>
-                        <p>专为易拉罐内涂工艺设计的入口段设备，稳定衔接生产线，保障内涂工序高效连续运行。</p>
-                        <span class="tag">定制设备</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== Solutions ===== -->
-    <section class="section solutions" id="solutions">
-        <div class="container">
-            <h2 class="section-title">行业解决方案</h2>
-            <p class="section-subtitle">深耕易拉罐全产业链，为各环节提供专业输送方案</p>
-            <div class="industry-grid">
-                <div class="industry-item">
-                    <span class="icon">🥫</span>
-                    <h4>饮料制罐</h4>
-                </div>
-                <div class="industry-item">
-                    <span class="icon">🍺</span>
-                    <h4>啤酒制罐</h4>
-                </div>
-                <div class="industry-item">
-                    <span class="icon">🥤</span>
-                    <h4>食品包装</h4>
-                </div>
-                <div class="industry-item">
-                    <span class="icon">🔄</span>
-                    <h4>产线改造升级</h4>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== Cases ===== -->
-    <section class="section cases" id="cases">
-        <div class="container">
-            <h2 class="section-title">典型案例</h2>
-            <p class="section-subtitle">服务国内外知名制罐企业，累计完成数百项工程项目</p>
-            <div class="case-grid">
-                <div class="case-card">
-                    <div class="img-wrap" style="background:#e8d5d5;">
-                        <img src="images/products/product-2.jpg" alt="波尔制罐" onerror="this.parentElement.innerHTML='<span>🏢 波尔项目</span>'">
-                    </div>
-                    <div class="info">
-                        <div class="company">青岛波尔 / 武汉波尔 / 佛山波尔</div>
-                        <h4>波尔制罐输送系统项目</h4>
-                        <p>为多家波尔制罐工厂提供输送系统设备与产线改造服务，涵盖安装、调试与维护。</p>
-                    </div>
-                </div>
-                <div class="case-card">
-                    <div class="img-wrap" style="background:#d5e0d5;">
-                        <img src="images/products/2-1.jpg" alt="宝钢制罐" onerror="this.parentElement.innerHTML='<span>🏢 宝钢项目</span>'">
-                    </div>
-                    <div class="info">
-                        <div class="company">武汉宝钢制罐 / 河北宝钢制罐</div>
-                        <h4>宝钢制罐产线输送设备</h4>
-                        <p>为宝钢制罐多个基地提供输送线体设计与制造，提升产线自动化水平与生产效率。</p>
-                    </div>
-                </div>
-                <div class="case-card">
-                    <div class="img-wrap" style="background:#d5d5e0;">
-                        <img src="images/products/2-2.jpg" alt="中粮制罐" onerror="this.parentElement.innerHTML='<span>🏢 中粮项目</span>'">
-                    </div>
-                    <div class="info">
-                        <div class="company">广州中粮 / 杭州中粮 / 成都中粮 / 福建中粮</div>
-                        <h4>中粮制罐输送系统方案</h4>
-                        <p>为中粮制罐多个生产基地提供输送系统整体方案，助力客户实现产线效能提升。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== Advantage ===== -->
-    <section class="section" id="advantage">
-        <div class="container">
-            <h2 class="section-title">核心优势</h2>
-            <p class="section-subtitle">22 年行业深耕，为客户创造长期价值</p>
-            <div class="advantage-grid">
-                <div class="advantage-item">
-                    <span class="icon">🧑‍🔧</span>
-                    <h4>资深技术团队</h4>
-                    <p>核心成员来自波尔亚太等知名企业，拥有数十年易拉罐输送设备制造、安装与调试经验。</p>
-                </div>
-                <div class="advantage-item">
-                    <span class="icon">🏭</span>
-                    <h4>现代化制造能力</h4>
-                    <p>配备激光切割、数控冲床、数控折弯、激光焊接等完备加工设备，交期与品质有保障。</p>
-                </div>
-                <div class="advantage-item">
-                    <span class="icon">🌍</span>
-                    <h4>全球化服务能力</h4>
-                    <p>CE 认证，产品出口欧洲；服务网络覆盖国内主要制罐产区，响应及时。</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== Contact ===== -->
-    <section class="section contact-section" id="contact">
-        <div class="container">
-            <h2 class="section-title">联系我们</h2>
-            <p class="section-subtitle">专业团队为您提供免费咨询与方案评估</p>
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h3>中山市理氏科技有限公司</h3>
-                    <p><span class="label">📍 地址</span>广东省中山市（工厂）</p>
-                    <p><span class="label">📞 电话</span>（待提供）</p>
-                    <p><span class="label">📧 邮箱</span>（待提供）</p>
-                    <p><span class="label">🌐 网址</span>www.lisi-conveyance.com</p>
-                    <p style="margin-top:20px; font-size:14px; color:rgba(255,255,255,0.5);">
-                        * 联系信息完善中，您也可以直接通过下方表单留言咨询。
-                    </p>
-                </div>
-                <form class="contact-form" onsubmit="event.preventDefault(); alert('感谢您的留言，我们将尽快与您联系！'); this.reset();">
-                    <input type="text" placeholder="您的姓名" required>
-                    <input type="text" placeholder="公司名称">
-                    <input type="tel" placeholder="联系电话" required>
-                    <input type="email" placeholder="电子邮箱">
-                    <textarea placeholder="请描述您的需求..." required></textarea>
-                    <button type="submit">提交咨询 →</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== Footer ===== -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div>
-                    <h4>中山市理氏科技有限公司</h4>
-                    <p style="line-height:1.8; font-size:13px;">
-                        专注于易拉罐行业输送系统研发、生产、改造及销售，<br>
-                        拥有 22 年行业经验，产品通过 CE 认证，出口欧洲。
-                    </p>
-                </div>
-                <div>
-                    <h4>产品中心</h4>
-                    <a href="#products">转角风台</a>
-                    <a href="#products">杯型提升机</a>
-                    <a href="#products">输送线体系统</a>
-                    <a href="#products">杯笼改造方案</a>
-                </div>
-                <div>
-                    <h4>快速链接</h4>
-                    <a href="#about">关于我们</a>
-                    <a href="#cases">典型案例</a>
-                    <a href="#advantage">核心优势</a>
-                    <a href="#contact">联系我们</a>
-                </div>
-                <div>
-                    <h4>联系方式</h4>
-                    <a href="#">📍 广东 · 中山</a>
-                    <a href="#">📞 （待提供）</a>
-                    <a href="#">📧 （待提供）</a>
-                </div>
-            </div>
-            <div class="copyright">
-                &copy; 2026 中山市理氏科技有限公司 All Rights Reserved.
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Mobile menu toggle
-        function toggleMenu() {
-            document.getElementById('nav').classList.toggle('open');
-        }
-        // Close menu on link click
-        document.querySelectorAll('.nav a').forEach(a => {
-            a.addEventListener('click', () => {
-                document.getElementById('nav').classList.remove('open');
-            });
-        });
-        // Header shadow on scroll
-        window.addEventListener('scroll', () => {
-            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 20);
-        });
-    </script>
+<script>
+function toggleMenu(){document.getElementById('nav').classList.toggle('open')}
+document.querySelectorAll('.nav a').forEach(a=>{a.addEventListener('click',()=>{document.getElementById('nav').classList.remove('open')})})
+window.addEventListener('scroll',()=>{document.getElementById('header').classList.toggle('scrolled',window.scrollY>20)})
+</script>
 
 </body>
 </html>
