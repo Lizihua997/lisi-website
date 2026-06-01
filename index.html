@@ -114,37 +114,33 @@
         .hero {
             margin-top: 72px;
             height: 85vh;
-            min-height: 500px;
-            background: linear-gradient(135deg, #1a1a2e 0%, #2d1b1b 40%, #3d0c11 100%);
+            min-height: 520px;
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
+            background: #111;
         }
-        .hero::before {
-            content: '';
+        .hero-bg {
             position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(200,16,46,0.15) 0%, transparent 70%);
-            border-radius: 50%;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            opacity: 0.7;
         }
         .hero::after {
             content: '';
             position: absolute;
-            bottom: -30%;
-            left: -10%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(200,16,46,0.1) 0%, transparent 70%);
-            border-radius: 50%;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.35) 60%, transparent 100%);
+            z-index: 1;
         }
         .hero-content {
             position: relative;
-            z-index: 1;
-            max-width: 700px;
+            z-index: 2;
+            max-width: 680px;
         }
         .hero-content h1 {
             font-size: 48px;
@@ -156,9 +152,9 @@
         .hero-content h1 span { color: var(--primary-light); }
         .hero-content p {
             font-size: 18px;
-            color: rgba(255,255,255,0.75);
+            color: rgba(255,255,255,0.8);
             margin-bottom: 36px;
-            max-width: 550px;
+            max-width: 520px;
             line-height: 1.7;
         }
         .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
@@ -180,9 +176,9 @@
         .hero-btns .btn-outline {
             background: transparent;
             color: #fff;
-            border: 2px solid rgba(255,255,255,0.3);
+            border: 2px solid rgba(255,255,255,0.35);
         }
-        .hero-btns .btn-outline:hover { border-color: var(--primary-light); background: rgba(200,16,46,0.15); }
+        .hero-btns .btn-outline:hover { border-color: var(--primary-light); background: rgba(200,16,46,0.2); }
 
         /* ===== Trust Bar ===== */
         .trust-bar {
@@ -529,6 +525,7 @@
 
     <!-- ===== Hero ===== -->
     <section class="hero">
+        <img class="hero-bg" src="images/hero-bg.jpg" alt="LISI 输送设备实景">
         <div class="container hero-content">
             <h1>更智慧 · 更快捷 · 更方便<br><span>易拉罐输送系统专家</span></h1>
             <p>
@@ -599,7 +596,7 @@
             <div class="product-grid">
                 <div class="product-card">
                     <div class="img-wrap">
-                        <img src="images/products/turn-table.jpg" alt="转角风台" onerror="this.parentElement.innerHTML='<div style=\\'color:#999;font-size:40px\\'>🔄</div>'">
+                        <img src="images/products/转角风台.jpg" alt="转角风台" onerror="this.parentElement.innerHTML='<div style=\\'color:#999;font-size:40px\\'>🔄</div>'">
                     </div>
                     <div class="info">
                         <h3>转角风台</h3>
@@ -609,7 +606,7 @@
                 </div>
                 <div class="product-card">
                     <div class="img-wrap">
-                        <img src="images/products/product-1.jpg" alt="杯型提升机" onerror="this.parentElement.innerHTML='<div style=\\'color:#999;font-size:40px\\'>⬆️</div>'">
+                        <img src="images/products/杯型提升机.jpg" alt="杯型提升机" onerror="this.parentElement.innerHTML='<div style=\\'color:#999;font-size:40px\\'>⬆️</div>'">
                     </div>
                     <div class="info">
                         <h3>杯型提升机</h3>
@@ -619,7 +616,7 @@
                 </div>
                 <div class="product-card">
                     <div class="img-wrap">
-                        <img src="images/products/product-2.jpg" alt="输送线体" onerror="this.parentElement.innerHTML='<div style=\\'color:#999;font-size:40px\\'>🔗</div>'">
+                        <img src="images/products/输送线体系统.jpg" alt="输送线体" onerror="this.parentElement.innerHTML='<div style=\\'color:#999;font-size:40px\\'>🔗</div>'">
                     </div>
                     <div class="info">
                         <h3>输送线体系统</h3>
@@ -629,11 +626,11 @@
                 </div>
                 <div class="product-card">
                     <div class="img-wrap">
-                        <img src="images/products/2-1.jpg" alt="罐笼改造" onerror="this.parentElement.innerHTML='<div style=\\'color:#999;font-size:40px\\'>🏗️</div>'">
+                        <img src="images/products/杯笼改造方案.jpg" alt="杯笼改造" onerror="this.parentElement.innerHTML='<div style=\\'color:#999;font-size:40px\\'>🏗️</div>'">
                     </div>
                     <div class="info">
-                        <h3>罐笼改造方案</h3>
-                        <p>各位置罐笼改造项目数百项，优化生产效率，降低故障率，延长设备使用寿命。</p>
+                        <h3>杯笼改造方案</h3>
+                        <p>各位置杯笼改造项目数百项，优化生产效率，降低故障率，延长设备使用寿命。</p>
                         <span class="tag">改造服务</span>
                     </div>
                 </div>
@@ -649,12 +646,12 @@
                 </div>
                 <div class="product-card">
                     <div class="img-wrap">
-                        <img src="images/products/2-3.jpg" alt="非标定制" onerror="this.parentElement.innerHTML='<div style=\\'color:#999;font-size:40px\\'>🔧</div>'">
+                        <img src="images/products/非标定制设备.jpg" alt="内涂入口" onerror="this.parentElement.innerHTML='<div style=\\'color:#999;font-size:40px'>🔧</div>'">
                     </div>
                     <div class="info">
-                        <h3>非标定制设备</h3>
-                        <p>根据客户实际产线需求定制各类输送设备，灵活适配不同厂房布局与工艺要求。</p>
-                        <span class="tag">定制服务</span>
+                        <h3>内涂入口设备</h3>
+                        <p>专为易拉罐内涂工艺设计的入口段设备，稳定衔接生产线，保障内涂工序高效连续运行。</p>
+                        <span class="tag">定制设备</span>
                     </div>
                 </div>
             </div>
@@ -796,7 +793,7 @@
                     <a href="#products">转角风台</a>
                     <a href="#products">杯型提升机</a>
                     <a href="#products">输送线体系统</a>
-                    <a href="#products">ADB 自动化设备</a>
+                    <a href="#products">杯笼改造方案</a>
                 </div>
                 <div>
                     <h4>快速链接</h4>
